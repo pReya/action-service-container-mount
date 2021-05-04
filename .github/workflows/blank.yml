@@ -1,0 +1,26 @@
+name: Test Bind Mount to Service Container
+
+on:
+  workflow_dispatch:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: "luke-plausin-cr/dummy-repo" 
+          path: "checkout"
+          clean: "false"
+      - name: List folder
+        run: pwd && ls -la
+      - run: sleep 10s
+      - run: curl -vv "localhost"
+
+    services:
+      php:
+        image: thecodingmachine/php:8.0-v4-apache
+        ports:
+          - "80:80"
+        volumes:
+          - /home/runner/work/action-service-container-mount/action-service-container-mount/checkout:/var/www/html
