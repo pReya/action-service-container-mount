@@ -11,7 +11,6 @@ jobs:
         with:
           repository: "luke-plausin-cr/dummy-repo" 
           path: "checkout"
-          clean: "false"
       - name: List folder
         run: pwd && ls -la
       - run: sleep 10s
